@@ -6,6 +6,7 @@ import TestUtilities.HelperMethods;
 import Utilities.ExtentReportManager;
 import com.aventstack.extentreports.Status;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
@@ -27,14 +28,9 @@ public class TestSuite_eCommerceTest {
     @BeforeTest
     public void preTestExecution()
     {
-
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--password-store=basic");  // Disables Chrome password manager
-//        options.addArguments("--disable-features=PasswordManager");
-
-        /* Initialize WebDriver */
-//        webDriver = new ChromeDriver(options);
-        webDriver = new FirefoxDriver();
+        /* Initialize Chrome WebDriver without password popup*/
+        webDriver = HelperMethods.getChromeDriverWithoutPasswordPopup();
+//        webDriver = new FirefoxDriver();
         /*  Set Implicit Wait for finding elements */
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ConfigUtil.IMPLICIT_WAIT));
         /*  Maximize the browser window */
@@ -121,5 +117,4 @@ public class TestSuite_eCommerceTest {
         /* Logging */
         System.out.println("Browser is closed ...");
     }
-
 }
